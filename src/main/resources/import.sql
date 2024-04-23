@@ -1,14 +1,19 @@
-CREATE SCHEMA IF NOT EXISTS loja AUTHORIZATION sa;
+DROP SCHEMA loja;
 
-CREATE TABLE IF NOT EXISTS loja.PESSOAS(
+CREATE SCHEMA IF NOT EXISTS bblite AUTHORIZATION sa;
 
-idPessoa BIGINT NOT NULL,
+CREATE TABLE IF NOT EXISTS bblite.USUARIO(
+
+id BIGINT NOT NULL,
 nome VARCHAR(100) NOT NULL,
-sobrenome VARCHAR(200),
-PRIMARY KEY (idPessoa)
+cpf VARCHAR(15),
+email VARCHAR(50),
+password VARCHAR(50),
+PRIMARY KEY (id)
 );
 
-INSERT INTO loja.PESSOAS (idPessoa, nome, sobrenome) VALUES (1, 'Fernando', 'Araujo');
-INSERT INTO loja.PESSOAS (idPessoa, nome, sobrenome) VALUES (2, 'Fátima', 'Araujo');
-INSERT INTO loja.PESSOAS (idPessoa, nome, sobrenome) VALUES (3, 'João', 'Araujo');
-INSERT INTO loja.PESSOAS (idPessoa, nome, sobrenome) VALUES (4, 'Benjamin', 'Araujo');
+INSERT INTO bblite.USUARIO (id, nome, cpf, email, password) VALUES (1, 'Átila  Iamarino ','21099429080','atila@biologo.com.br', '123');
+INSERT INTO bblite.USUARIO (id, nome, cpf, email, password) VALUES (2, 'Albert Einstein','54200269023', 'albert@cientista.com.br', '456');
+INSERT INTO bblite.USUARIO (id, nome, cpf, email, password) VALUES (3, 'Doutor Lucas','86316932006','lucas@doutor.com.br', '789');
+INSERT INTO bblite.USUARIO (id, nome, cpf, email, password) VALUES (4, 'Pedro Estudante','66907248085','Pedro@unb.com.br', '987');
+
