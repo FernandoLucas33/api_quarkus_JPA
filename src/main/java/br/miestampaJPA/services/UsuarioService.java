@@ -19,7 +19,7 @@ public class UsuarioService {
     public int AtualizaUsuario(long id, Usuario usuario){
         usuario.setId(id);
         validaUsuario(usuario);
-        return dao.inserirUsuario(usuario);
+        return dao.inseriUsuario(usuario);
     }
 
 }

@@ -9,7 +9,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 
-
+@RequestScoped
 @Path("/v1/usuario")
 public class UsuarioResource {
 
@@ -26,24 +26,24 @@ public class UsuarioResource {
 
     @GET
     @Path("/{id}")
-    public  Response obtemUsuarioPorId(final @PathParam("idUsuario") long id){
+    public  Response obtemUsuarioPorId(final @PathParam("id") long id){
         return Response.status(Response.Status.OK).entity(dao.BuscarUsuarioPorId(id)).build();
     }
 
     @POST
     public Response acresentaUsuario(Usuario usuario){
-        return Response.status(Response.Status.CREATED).entity(dao.inserirUsuario(usuario)).build();
+        return Response.status(Response.Status.CREATED).entity(dao.inseriUsuario(usuario)).build();
     }
 
     @DELETE
     @Path("/{id}")
-    public Response excluiUsuario(final  @PathParam("idUsuario") long id){
+    public Response excluiUsuario(final  @PathParam("id") long id){
         return Response.status(Response.Status.OK).entity(dao.excluirUsuario(id)).build();
     }
 
-    @PUT
+    /*@PUT
     @Path("/{id}")
-    public  Response atualizaUsuario(final @PathParam("idUsuario") long id, Usuario usuario){
-        return Response.status(Response.Status.OK).entity(service.AtualizaUsuario(id, usuario)).build();
-    }
+    public  Response atualizaUsuario(final @PathParam("idUsuario") Usuario usuario){
+        return Response.status(Response.Status.OK).entity(dao.atualizaUsuario(usuario)).build();
+    }*/
 }

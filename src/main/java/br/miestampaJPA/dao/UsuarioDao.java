@@ -26,18 +26,24 @@ public class UsuarioDao {
     }
 
     public Usuario BuscarUsuarioPorId(long id){
-        String nameQuery = "LISTAR_USUARIO_ID";
+        String nameQuery = "LISTA_USUARIO_ID";
         TypedQuery<Usuario> query = em.createNamedQuery(nameQuery, Usuario.class);
         query.setParameter("idUsuario", id);
         return query.getSingleResult();
     }
-
-    public int inserirUsuario(Usuario usuario){
-        String nameQuery = "INSERIR_USUARIO";
-        return inserirOuAtualizar(usuario, nameQuery);
+    @Transactional
+    public int inseriUsuario(Usuario usuario){
+        String nameQuery = "INSERI_USUARIO";
+        Query query = em.createNamedQuery(nameQuery);
+        query.setParameter("nome", usuario.getNome());
+        query.setParameter("cpf", usuario.getCpf());
+        query.setParameter("email", usuario.getEmail());
+        query.setParameter("password", usuario.getPassword());
+        return query.executeUpdate();
     }
-
-    private int inserirOuAtualizar(Usuario usuario, String nameQuery){
+    @Transactional
+    public int atualizaUsuario(Usuario usuario){
+        String nameQuery ="ATUALIZA_USUARIO";
         Query query = em.createNamedQuery(nameQuery);
         query.setParameter("idUsuario", usuario.getId());
         query.setParameter("nome", usuario.getNome());
@@ -50,10 +56,10 @@ public class UsuarioDao {
 
     @Transactional
     public int excluirUsuario(long id){
-
-        String nameQuery = "EXCLUIR_USUARIO";
+        String nameQuery = "EXCLUI_USUARIO";
         Query query = em.createNamedQuery(nameQuery);
-        query.setParameter("idUsuario", id);
+
+        query.setParameter("idUsuario",id);
 
         return query.executeUpdate();
     }
